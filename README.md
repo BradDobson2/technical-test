@@ -91,3 +91,8 @@ This is a place for you to add your notes, plans, thinking and any feedback you 
 
 -   Create a React front end application that will interact with the API. The job spec mentions microservices, so I don't want to couple the front end app to the Laravel app with something like Inertia. I will aim to create a more standalone React app so it could be separated and hosted separately in the future.
 -   Use a context to store the application state initially due to the size of the app. We could add something like Redux in the future if the app grows in size/complexity.
+-   Use a map package such as MapBox to show the windfarm and its turbines.
+
+### ERD
+
+![ERD](cyberhawk.drawio.png)
