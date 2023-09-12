@@ -1,6 +1,9 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\ComponentGradeController;
+use App\Http\Controllers\Api\ComponentTypeController;
+use App\Http\Controllers\Api\WindFarmController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +17,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::post('/auth', AuthController::class);
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/component-types', ComponentTypeController::class);
+    Route::get('/component-grades', ComponentGradeController::class);
+    Route::get('/wind-farm', WindFarmController::class);
 });

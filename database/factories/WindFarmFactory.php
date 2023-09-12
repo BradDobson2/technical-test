@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use MatanYadaev\EloquentSpatial\Objects\Polygon;
 use MatanYadaev\EloquentSpatial\Objects\LineString;
@@ -36,6 +37,15 @@ class WindFarmFactory extends Factory
                 ]),
             ]),
         ];
+    }
+
+    public function forUser(User $user): Factory
+    {
+        return $this->state(function (array $attributes) use ($user) {
+            return [
+                'user_id' => $user->id,
+            ];
+        });
     }
 
     public function area(Polygon $area): Factory

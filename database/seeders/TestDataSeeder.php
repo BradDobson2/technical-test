@@ -28,24 +28,23 @@ class TestDataSeeder extends Seeder
         /**
          * Create a wind farm with 5 turbines, each turbine having one of each component type.
          */
-        $windFarm = $user->windFarms()->save(
-            WindFarm::factory()
-                ->area($this->windFarmAreaPolygon())
-                ->has(
-                    Turbine::factory(5)
-                        ->state(new Sequence(
-                            ['location' => new Point(-3.4013841, 55.9261227)],
-                            ['location' => new Point(-3.3977578, 55.9264472)],
-                            ['location' => new Point(-3.3933590, 55.9253172)],
-                            ['location' => new Point(-3.3924363, 55.9221793)],
-                            ['location' => new Point(-3.4015987, 55.9221552)],
-                        ))
-                        ->has(Component::factory()->bladeType())
-                        ->has(Component::factory()->rotorType())
-                        ->has(Component::factory()->hubType())
-                        ->has(Component::factory()->generatorType())
-                )->make()
-        );
+        $windFarm = WindFarm::factory()
+            ->forUser($user)
+            ->area($this->windFarmAreaPolygon())
+            ->has(
+                Turbine::factory(5)
+                    ->state(new Sequence(
+                        ['location' => new Point(-3.4013841, 55.9261227)],
+                        ['location' => new Point(-3.3977578, 55.9264472)],
+                        ['location' => new Point(-3.3933590, 55.9253172)],
+                        ['location' => new Point(-3.3924363, 55.9221793)],
+                        ['location' => new Point(-3.4015987, 55.9221552)],
+                    ))
+                    ->has(Component::factory()->bladeType())
+                    ->has(Component::factory()->rotorType())
+                    ->has(Component::factory()->hubType())
+                    ->has(Component::factory()->generatorType())
+            )->create();
 
         /**
          * Create an inspection for each turbine and grade it's components.
