@@ -18,7 +18,7 @@ class TurbineResource extends JsonResource
             'id' => $this->id,
             'wind_farm_id' => $this->wind_farm_id,
             'name' => $this->name,
-            'location' => $this->location->toWkt(),
+            'location' => $this->location->getCoordinates(),
             'components' => ComponentResource::collection($this->whenLoaded('components')),
             'inspections' => InspectionResource::collection($this->whenLoaded('inspections')),
         ];

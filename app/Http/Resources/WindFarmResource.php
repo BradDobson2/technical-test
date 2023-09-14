@@ -17,7 +17,7 @@ class WindFarmResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'area' => $this->area->toWkt(),
+            'area' => $this->area->getCoordinates(),
             'turbines' => TurbineResource::collection($this->whenLoaded('turbines')),
         ];
     }

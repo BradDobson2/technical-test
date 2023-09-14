@@ -19,7 +19,8 @@ class AuthController extends Controller
 
         $user = User::where('email', $request->validated('email'))->firstOrFail();
         $user->tokens()->delete();
-        $user->createToken('auth-token');
+        $token = $user->createToken('auth-token');
+        $user->plainTextToken = $token->plainTextToken;
 
         return new AuthenticatedUserResource($user);
     }

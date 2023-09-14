@@ -23,7 +23,7 @@ class TestDataSeeder extends Seeder
      */
     public function run()
     {
-        $user = User::factory()->create(['email' => 'brad@windturbines.com']);
+        $user = User::factory()->create(['email' => 'joebloggs@gmail.com']);
 
         /**
          * Create a wind farm with 5 turbines, each turbine having one of each component type.
