@@ -1,10 +1,13 @@
 import axios from "axios";
 
+const apiUrl = import.meta.env.VITE_API_URL;
+const fetchToken = () => JSON.parse(localStorage.getItem("user")).token;
+
 export const loginRequest = (email, password) =>
-  axios.post("http://localhost/api/auth", { email, password });
+  axios.post(`${apiUrl}/auth`, { email, password });
 
 export const fetchComponentTypesRequest = () => {
-  return axios.get("http://localhost/api/component-types", {
+  return axios.get(`${apiUrl}/component-types`, {
     headers: {
       Authorization: `Bearer ${fetchToken()}`,
       Accept: "application/json",
@@ -13,7 +16,7 @@ export const fetchComponentTypesRequest = () => {
 };
 
 export const fetchComponentGradesRequest = () => {
-  return axios.get("http://localhost/api/component-grades", {
+  return axios.get(`${apiUrl}/component-grades`, {
     headers: {
       Authorization: `Bearer ${fetchToken()}`,
       Accept: "application/json",
@@ -22,12 +25,10 @@ export const fetchComponentGradesRequest = () => {
 };
 
 export const fetchWindFarmRequest = () => {
-  return axios.get("http://localhost/api/wind-farm", {
+  return axios.get(`${apiUrl}/wind-farm`, {
     headers: {
       Authorization: `Bearer ${fetchToken()}`,
       Accept: "application/json",
     },
   });
 };
-
-const fetchToken = () => JSON.parse(localStorage.getItem("user")).token;
