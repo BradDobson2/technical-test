@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { ArrowLeftOnRectangleIcon } from "@heroicons/react/24/outline";
 import Icon from "../components/icon";
-import { fulfilled, inProgress } from "../state/request-statuses";
+import { inProgress } from "../state/request-statuses";
 import LoadingSpinner from "../components/loading-spinner";
 import { fetchWindFarm } from "../state/wind-farm/actions";
 import { useDispatch, useSelector } from "react-redux";
@@ -41,7 +41,7 @@ export default function Inspector() {
             <nav className="flex flex-1 flex-col">
               <ul role="list" className="flex flex-1 flex-col gap-y-7">
                 {requestStatus === inProgress && <LoadingSpinner />}
-                {requestStatus === fulfilled && windFarm && (
+                {windFarm && (
                   <li>
                     <div className="text-sm font-semibold leading-6 text-white">
                       {windFarm.name}
@@ -67,7 +67,7 @@ export default function Inspector() {
                 )}
                 <li className="mt-auto">
                   <button
-                    className="w-full cursor-pointer group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-indigo-200 hover:bg-indigo-700 hover:text-white"
+                    className="w-full cursor-pointer group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-white hover:bg-indigo-700 hover:text-white"
                     onClick={() => dispatch(logout())}
                   >
                     <ArrowLeftOnRectangleIcon

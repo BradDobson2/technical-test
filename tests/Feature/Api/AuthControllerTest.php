@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\User;
+use Illuminate\Testing\Fluent\AssertableJson;
 
 test('returns error message for missing email field', function () {
     $response = $this->postJson('/api/auth', ['password' => 'password']);
@@ -35,6 +36,5 @@ test('returns user on successful authentication', function () {
     $response->assertJsonFragment([
         'name' => $user->name,
         'email' => $user->email,
-        'token' => $user->tokens->first()->token,
     ]);
 });

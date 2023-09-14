@@ -28,7 +28,7 @@ export default function Map({ area, turbines, onTurbineSelected }) {
   };
 
   return (
-    <MapContainer className="w-full h-full" zoom={13} scrollWheelZoom={false}>
+    <MapContainer className="w-full h-full" scrollWheelZoom={false}>
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -36,6 +36,7 @@ export default function Map({ area, turbines, onTurbineSelected }) {
       {area && <WindFarmArea area={area} />}
       {turbines.map((turbine) => (
         <TurbineMarker
+          key={turbine.id}
           position={turbine.location}
           onClick={() => onTurbineSelected(turbine.id)}
         />

@@ -15,6 +15,6 @@ export default configureStore({
     componentGrades,
   },
   preloadedState: {
-    user: await initialState(),
+    user: initialState(),
   },
 });

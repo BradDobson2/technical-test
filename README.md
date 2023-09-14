@@ -96,3 +96,61 @@ This is a place for you to add your notes, plans, thinking and any feedback you 
 ### ERD
 
 ![ERD](erd.png)
+
+## Project setup
+
+1. Install composer dependencies using the method described [above](#installing-composer-dependencies).
+
+2. Start sail and set up the Laravel app
+
+```
+./vendor/bin/sail up
+cp .env.example .env
+./vendor/bin/sail artisan key:generate
+```
+
+You may also need to change the `DB_HOST` env variable to `mysql` to establish a database connection.
+
+3. Run some tests
+
+```
+./vendor/bin/sail test
+```
+
+One test will fail due to some floating point rounding of the coordinate values. I didn't get to the bottom of that issue.
+
+4. Check the code standards
+
+```
+./vendor/bin/phpcs --standard=psr12 app database tests
+```
+
+Introduce some standard violations if you wish to, some can be fixed automatically:
+
+```
+./vendor/bin/phpcbf --standard=psr12 app database tests
+```
+
+4. Migrate the database and seed some test data
+
+```
+./vendor/bin/sail artisan migrate:fresh --seed
+```
+
+5. Set up the React front end app
+
+```
+./vendor/bin/sail npm install
+./vendor/bin/sail npm run dev
+```
+
+6. Navigate to the [app](http://localhost), login (joebloggs@gmail.com, password) and play around!
+
+## Closing thoughts / areas to improve
+
+-   Only allowed one token per user for simplicity. This would invalidate sessions on other devices if you logged into a new device.
+-   Used Redux on the front end as the React contexts became hard to manage.
+-   Utilised tailwind UI as a base for the front end app.
+-   UX on the front end could be improved by indicating which turbine is currently selected by changing the marker in some way.
+-   Struggled to get ESLint with airbnb config to play nicely with Prettier so just stuck to the prettier defaults due to time.
+-   I would have liked to add some front end testing with Jest or something similar, but again due to time, I struggled to acheive this.

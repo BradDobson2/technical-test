@@ -49,5 +49,5 @@ test('returns authenticated user\'s wind farm', function () {
 
     $windFarm->load(['turbines' => ['components', 'inspections' => ['inspectionComponents']]]);
     $windFarmResource = new WindFarmResource($windFarm);
-    $response->assertJsonFragment($windFarmResource->response()->getData(true)['data']);
+    $response->assertJson($windFarmResource->response()->getData(true));
 });

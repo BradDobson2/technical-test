@@ -19,7 +19,9 @@ class InspectionResource extends JsonResource
             'turbine_id' => $this->turbine_id,
             'inspector_name' => $this->inspector_name,
             'inspection_date' => $this->inspection_date,
-            'inspection_components' => InspectionComponentResource::collection($this->whenLoaded('inspectionComponents')),
+            'inspection_components' => InspectionComponentResource::collection(
+                $this->whenLoaded('inspectionComponents')
+            ),
         ];
     }
 }
